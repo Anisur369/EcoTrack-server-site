@@ -31,17 +31,11 @@ async function run() {
     const productsCollection = ecoTrack.collection("products");
     const bidsCollection = ecoTrack.collection("bids");
 
-    // challenges related apis
+    // users related apis
 
     app.get("/challenges", async (req, res) => {
       const cursor = challengesCollection.find({});
       const result = await cursor.toArray();
-      res.send(result);
-    });
-    app.get("/challenges/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await challengesCollection.findOne(query);
       res.send(result);
     });
     app.post("/challenges", async (req, res) => {
@@ -50,53 +44,6 @@ async function run() {
       const result = await challengesCollection.insertOne(newChallenge);
       res.send(result);
     });
-    app.delete("/challenges/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await challengesCollection.deleteOne(query);
-      res.send(result);
-    });
-    app.put("/challenges/:id", async (req, res) => {
-      const id = req.params.id;
-      const updatedChallenge = req.body;
-      const filter = { _id: new ObjectId(id) };
-      const options = { upsert: true };
-      const updateDoc = {
-        $set: {
-          title: updatedChallenge.title,
-          category: updatedChallenge.category,
-          metric: updatedChallenge.metric,
-          image: updatedChallenge.image,
-        },
-      };
-      const result = await challengesCollection.updateOne(
-        filter,
-        updateDoc,
-        options
-      );
-      res.send(result);
-    });
-    app.patch("/challenges/:id", async (req, res) => {
-      const id = req.params.id;
-      const updatedChallenge = req.body;
-      const filter = { _id: new ObjectId(id) };
-      const options = { upsert: true };
-      const updateDoc = {
-        $set: {
-          title: updatedChallenge.title,
-          category: updatedChallenge.category,
-          metric: updatedChallenge.metric,
-          image: updatedChallenge.image,
-        },
-      };
-      const result = await challengesCollection.updateOne(
-        filter,
-        updateDoc,
-        options
-      );
-      res.send(result);
-    });
-
     // app.post("/challenges", async (req, res) => {
     //   const newUser = req.body;
     //   const email = req.body.email;
@@ -111,26 +58,26 @@ async function run() {
     //     res.send(result);
     //   }
     // });
-    // app.delete("/users/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) };
-    //   const result = await usersCollection.deleteOne(query);
-    //   res.send(result);
-    // });
-    // app.put("/users/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const updatedUser = req.body;
-    //   const query = { _id: new ObjectId(id) };
-    //   const options = { upsert: true };
-    //   const updateDoc = {
-    //     $set: {
-    //       name: updatedUser.name,
-    //       email: updatedUser.email,
-    //     },
-    //   };
-    //   const result = await usersCollection.updateOne(query, updateDoc, options);
-    //   res.send(result);
-    // });
+    app.delete("/users/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await usersCollection.deleteOne(query);
+      res.send(result);
+    });
+    app.put("/users/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedUser = req.body;
+      const query = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          name: updatedUser.name,
+          email: updatedUser.email,
+        },
+      };
+      const result = await usersCollection.updateOne(query, updateDoc, options);
+      res.send(result);
+    });
 
     // products related apis
 
