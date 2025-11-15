@@ -8,7 +8,6 @@ app.use(cors());
 
 // const uri =
 //   "mongodb+srv://ashik:2e5Ekv1JbPyPnF1Z@anisur.kaax7ve.mongodb.net/?appName=anisur";
-
 const uri = "mongodb://localhost:27017";
 
 const client = new MongoClient(uri, {
