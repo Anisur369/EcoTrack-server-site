@@ -27,6 +27,7 @@ async function run() {
     await client.connect();
     const ecoTrack = client.db("EcoTrack");
     const challengesCollection = ecoTrack.collection("challenges");
+    const userChallengesCollection = ecoTrack.collection("userChallenges");
     const tipsCollection = ecoTrack.collection("tips");
     const eventsCollection = ecoTrack.collection("events");
 
@@ -88,6 +89,51 @@ async function run() {
         },
       };
       const result = await challengesCollection.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
+      res.send(result);
+    });
+
+    // userChallenges related apis
+    app.get("/userChallenges", async (req, res) => {
+      const cursor = userChallengesCollection.find({});
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+    app.get("/userChallenges/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await userChallengesCollection.findOne(query);
+      res.send(result);
+    });
+    app.post("/userChallenges", async (req, res) => {
+      const newUserChallenge = req.body;
+      console.log(newUserChallenge);
+      const result = await userChallengesCollection.insertOne(newUserChallenge);
+      res.send(result);
+    });
+    app.delete("/userChallenges/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await userChallengesCollection.deleteOne(query);
+      res.send(result);
+    });
+    app.put("/userChallenges/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedUserChallenge = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          title: updatedUserChallenge.title,
+          category: updatedUserChallenge.category,
+          metric: updatedUserChallenge.metric,
+          image: updatedUserChallenge.image,
+        },
+      };
+      const result = await userChallengesCollection.updateOne(
         filter,
         updateDoc,
         options
