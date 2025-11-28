@@ -64,8 +64,14 @@ async function run() {
         $set: {
           title: updatedChallenge.title,
           category: updatedChallenge.category,
-          metric: updatedChallenge.metric,
-          image: updatedChallenge.image,
+          description: updatedChallenge.description,
+          duration: updatedChallenge.duration,
+          target: updatedChallenge.target,
+          impactMetric: updatedChallenge.impactMetric,
+          createdBy: updatedChallenge.createdBy,
+          startDate: updatedChallenge.startDate,
+          endDate: updatedChallenge.endDate,
+          imageUrl: updatedChallenge.imageUrl,
         },
       };
       const result = await challengesCollection.updateOne(
@@ -130,9 +136,14 @@ async function run() {
           title: updatedUserChallenge.title,
           category: updatedUserChallenge.category,
           metric: updatedUserChallenge.metric,
-          image: updatedUserChallenge.image,
+          imageUrl: updatedUserChallenge.imageUrl,
+          challengeId: updatedUserChallenge.challengeId,
+          userId: updatedUserChallenge.userId,
+          status: updatedUserChallenge.status,
+          date: updatedUserChallenge.date,
         },
       };
+
       const result = await userChallengesCollection.updateOne(
         filter,
         updateDoc,
