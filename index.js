@@ -112,6 +112,7 @@ async function run() {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await userChallengesCollection.findOne(query);
+      console.log(result);
       res.send(result);
     });
     app.post("/userChallenges", async (req, res) => {
