@@ -5,10 +5,12 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 const app = express();
 app.use(express.json());
 app.use(cors());
+require("dotenv").config();
 
+// const uri = "mongodb://localhost:27017";
 // const uri =
 //   "mongodb+srv://ashik:2e5Ekv1JbPyPnF1Z@anisur.kaax7ve.mongodb.net/?appName=anisur";
-const uri = "mongodb://localhost:27017";
+const uri = process.env.DB_URI;
 
 const client = new MongoClient(uri, {
   serverApi: {
