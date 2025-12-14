@@ -4,8 +4,18 @@ const ObjectId = require("mongodb").ObjectId;
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const app = express();
 app.use(express.json());
-app.use(cors());
 require("dotenv").config();
+
+// app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:5174"],
+    credentials: true,
+    optionSuccessStatus: 200,
+  })
+);
+
+
 
 // const uri = "mongodb://localhost:27017";
 // const uri =
@@ -19,6 +29,7 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
+
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -291,3 +302,4 @@ const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port http://localhost:${port}`);
 });
+
