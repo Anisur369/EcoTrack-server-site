@@ -13,6 +13,7 @@
 ## 🚀 লাইভ সাইট ও রিপোজিটরি
 
 - 🌍 **Live URL**: [https://ecotrack-assigment10.netlify.app](https://ecotrack-assigment10.netlify.app)
+- 🖥️ **Client repo**: [github.com/Anisur369/EcoTrack-clint-site](https://github.com/Anisur369/EcoTrack-clint-site)
 - 🖥️ **Server Repository**: [github.com/Anisur369/EcoTrack-server-site](https://github.com/Anisur369/EcoTrack-server-site)
 
 ## ✨ প্রধান ফিচারসমূহ
@@ -34,7 +35,6 @@
 |-------------------------|--------------------------|
 | `/`                     | হোমপেজ                  |
 | `/challenges`           | সকল চ্যালেঞ্জ            |
-| `/challenges/:id`       | চ্যালেঞ্জ ডিটেইলস        |
 | `/login`, `/register`   | লগইন/রেজিস্ট্রেশন       |
 | `/forgot-password`      | পাসওয়ার্ড রিসেট          |
 
