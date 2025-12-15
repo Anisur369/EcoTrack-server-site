@@ -9,7 +9,7 @@ require("dotenv").config();
 // app.use(cors());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174", "https://ecotrack-assigment10.netlify.app/","https://thunderous-jalebi-768faa.netlify.app/", "https://courageous-moonbeam-d0bd72.netlify.app"],
+    origin: ["http://localhost:5173", "http://localhost:5174", "https://ecotrack-assigment10.netlify.app","https://thunderous-jalebi-768faa.netlify.app", "https://courageous-moonbeam-d0bd72.netlify.app"],
     credentials: true,
     optionSuccessStatus: 200,
   })
